@@ -16,13 +16,19 @@ const Productos = () => {
 
     // Obtener el State. Use Selector para acceder al state
     const productos = useSelector(state => state.productos.productos);
-    console.log(productos);
-
+    const error = useSelector(state => state.productos.error);
+    const loading = useSelector(state => state.productos.loading);
 
   return (
       <Fragment>
+          {/* Titulo */}
            <h2 className='text-center my-5'>Listado de productos</h2>
+           {/* Error */}
+           {error ? <p className='font-weight-bold alert alert-danger text-center mt-4'>Hubo un error</p> : null}
+            {/* Loading */}
+            {loading ? <p className='text-center'>Cargando...</p> : null}
 
+            {/* Grid */}
            <table className='table table-striped'>
                <thead className='bg-primary table-dark'>
                    <tr>
@@ -35,8 +41,8 @@ const Productos = () => {
                     { productos.length === 0 ? 'No hay productos' : (
                         productos.map(producto => (
                             <Producto
-                            key={producto.id}      
-                            producto={producto}                
+                            key={producto.id}
+                            producto={producto}
                             />
                         ))
                     )}
