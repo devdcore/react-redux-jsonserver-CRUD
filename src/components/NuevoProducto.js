@@ -21,8 +21,6 @@ const NuevoProducto = ({history}) => { // History pertenece al react ruter DOM. 
     const cargando = useSelector(state => state.productos.loading);
     const error = useSelector(state => state.productos.error);
 
-    console.log(cargando);
-
     // Mandar llamar el action de productoAction
     const agregarProducto = (producto) =>  dispatch( crearNuevoProductoAction(producto) );
     
@@ -55,7 +53,7 @@ const NuevoProducto = ({history}) => { // History pertenece al react ruter DOM. 
                     <div className='card-body'>
                         <h2 className='text-center mb-4 font-weight-bold'>
                             Agregar Nuevo Producto
-                        </h2>
+                        </h2>             
 
                         <form
                             onSubmit={submitNuevoProducto}

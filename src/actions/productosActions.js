@@ -52,7 +52,6 @@ export function crearNuevoProductoAction(producto) {
         }
     }
 }
-
 const agregarProducto = (producto) => ({
     type: AGREGAR_PRODUCTO,
     // payload:     // PAyload, es la parte que va a modificar los datos. El que va a modificar el state. NO lo vamos a usar (No es obligatorio)
@@ -75,21 +74,26 @@ const agregarProductoError = (estado) => ({
 
 // #############################################
 // #############################################
+// #############################################
 // Tambien se puede crear esta parte creando otro Function
 // Function que descarga los productos de la BD
+
 export function obtenerProdutosAction() {  // Peticion get
     return async (dispatch) => {
         dispatch( descargarProductos() );
 
         try {
+            // TimeOut para probar loading
+         //   setTimeout(async () => {                
             const respuesta = await clienteAxios.get('/productos');
             dispatch( descargaProductosExitosa(respuesta.data) );
+//            }, 1000);
+
         } catch (error) {
             dispatch( descargaProductosError() );
         }
     }
 }
-
 const descargarProductos = () => ({
     type: COMENZAR_DESCARGA_PRODUCTOS,
     payload: true //Para que actualice a true minetras se realiza la descarga de los productos
